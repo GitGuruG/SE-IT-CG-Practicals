@@ -8,14 +8,11 @@ using namespace std;
 
 int a, b, c, d, type;
 
-void dda(int x1, int y1, int x2, int y2, int type) {
+void BresenhamLine(int x1, int y1, int x2, int y2, int type) {
     int dx = abs(x2 - x1);
     int dy = abs(y2 - y1);
 
-    int length = dx > dy ? dx : dy;
-
-    float ix = (float)dx / (float)length;
-    float iy = (float)dy / (float)length;
+    float decision= 2*dy-dx;
 
     glColor3f(one, one, one);
     if (type == 4) {
@@ -27,7 +24,16 @@ void dda(int x1, int y1, int x2, int y2, int type) {
 
     float x = x1, y = y1;
     int j = 0;
-    for (int i = 0; i < length; i++) {
+    for (int i = 0; i < dx; i++) {
+
+         if(decision<0){
+            x++;
+            d+=2*dy;
+         }else{
+            x++; y++;
+            d+= 2*(dy-dx);
+         }
+
         if (type == 4 || type == 1) {
             glVertex2i((int)x, (int)y);
         }
@@ -38,8 +44,6 @@ void dda(int x1, int y1, int x2, int y2, int type) {
             glVertex2i((int)x, (int)y);
         }
         j = (j + 1) % 10;
-        x += ix;
-        y += iy;
     }
     glEnd();
 }
@@ -47,7 +51,7 @@ void dda(int x1, int y1, int x2, int y2, int type) {
 void display() {
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(zero, zero, zero);
-    dda(a, b, c, d, type);
+    BresenhamLine(a, b, c, d, type);
     glFlush();
 }
 
