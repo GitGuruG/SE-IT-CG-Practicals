@@ -28,7 +28,7 @@ x= x1;
 y=y1;
 glPointSize(1.0f);
 if(type==3){
-    glPointSize(1.0f);
+    glPointSize(5.0f);
 }
 glBegin(GL_POINTS);
 glVertex2i(x,y);
