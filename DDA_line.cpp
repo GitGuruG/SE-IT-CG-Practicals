@@ -27,8 +27,8 @@ Yin = dy/step;
 x= x1;
 y=y1;
 glPointSize(1.0f);
-if(type==3){
-    glPointSize(5.0f);
+if(type==4){
+    glPointSize(10.0f);
 }
 glBegin(GL_POINTS);
 glVertex2i(x,y);
@@ -54,7 +54,7 @@ glEnd();
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(zero, zero, zero);
+    glColor3f(one, zero, zero);
     dda(-350, 0, 350, 0, 1);
     dda(0, 350, 0, -350, 1);
     glFlush();
@@ -66,7 +66,8 @@ void init() {
   // glColor3f(1.0f,0.0f,0.0f);
   // glPointSize(4.0);
   glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();    gluOrtho2D(-700 / 2, 700 / 2, -700 / 2, 700 / 2);
+  glLoadIdentity();
+  gluOrtho2D(-700 / 2, 700 / 2, -700 / 2, 700 / 2);
 }
 
 int cnt=0;
@@ -137,6 +138,7 @@ int main(int argc, char** argv) {
     glutAddMenuEntry("DDA_DOTTED", 2);
     glutAddMenuEntry("DDA_DASHED", 3);
     glutAddMenuEntry("DDA_SOLID", 4);
+    //glutAddMenuEntry("EXIT", 9);
     glutAttachMenu(GLUT_RIGHT_BUTTON);
     glutMainLoop();
 
