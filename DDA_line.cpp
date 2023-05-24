@@ -9,39 +9,36 @@ using namespace std;
 int a, b, c, d, type;
 
 void dda(int x1, int y1, int x2, int y2, int type) {
-    int dx = abs(x2 - x1);
-    int dy = abs(y2 - y1);
+    cout<<"IN"<<endl;
+    float step,x,y,k,Xin,Yin;
+    int dx=x2-x1;
+    int dy=y2-y1;
 
-    int length = dx > dy ? dx : dy;
+if(abs(dx)> abs(dy))
+{
+step = abs(dx);
+}
+else
+step = abs(dy);
 
-    float ix = (float)dx / (float)length;
-    float iy = (float)dy / (float)length;
+Xin = dx/step;
+Yin = dy/step;
 
-    glColor3f(one, one, one);
-    if (type == 4) {
-        glPointSize(5.0f);
-    } else {
-        glPointSize(1.0f);
-    }
-    glBegin(GL_POINTS);
+x= x1;
+y=y1;
+glBegin(GL_POINTS);
+glVertex2i(x,y);
+glEnd();
 
-    float x = x1, y = y1;
-    int j = 0;
-    for (int i = 0; i < length; i++) {
-        if (type == 4 || type == 1) {
-            glVertex2i((int)x, (int)y);
-        }
-        if (j % 2 == 0 && type == 2) {
-            glVertex2i((int)x, (int)y);
-        }
-        if (j < 5 && type == 3) {
-            glVertex2i((int)x, (int)y);
-        }
-        j = (j + 1) % 10;
-        x += ix;
-        y += iy;
-    }
-    glEnd();
+for (k=1 ;k<=step;k++)
+{
+x= x + Xin;
+y= y + Yin;
+
+glBegin(GL_POINTS);
+glVertex2i(x,y);
+glEnd();
+}
 }
 
 void display() {
