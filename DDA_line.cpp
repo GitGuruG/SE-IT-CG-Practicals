@@ -144,3 +144,10 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+/*
+How to run?
+1.make click on first position
+2.make click on second position
+3.now hold mouse ring and leave it on choice
+4.hold left click to see line
+*/
