@@ -26,45 +26,103 @@ Yin = dy/step;
 
 x= x1;
 y=y1;
+glPointSize(1.0f);
+if(type==3){
+    glPointSize(1.0f);
+}
 glBegin(GL_POINTS);
 glVertex2i(x,y);
-glEnd();
-
+int j=0;
 for (k=1 ;k<=step;k++)
 {
 x= x + Xin;
 y= y + Yin;
 
-glBegin(GL_POINTS);
-glVertex2i(x,y);
-glEnd();
+        if (type == 4 || type == 1) {
+            glVertex2i((int)x, (int)y);
+        }
+        if (j % 4 == 0 && type == 2) {
+            glVertex2i((int)x, (int)y);
+        }
+        if (j < 5 && type == 3) {
+            glVertex2i((int)x, (int)y);
+        }
+        j = (j + 1) % 10;
 }
+glEnd();
 }
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(zero, zero, zero);
-    dda(a, b, c, d, type);
+    dda(-350, 0, 350, 0, 1);
+    dda(0, 350, 0, -350, 1);
     glFlush();
 }
 
 void init() {
-    glClearColor(zero, zero, zero, zero);
-    gluOrtho2D(0, 700, 0, 700);
+ glClearColor(0.6, 0.6, 0.6, 0.0);
+  glClear(GL_COLOR_BUFFER_BIT);
+  // glColor3f(1.0f,0.0f,0.0f);
+  // glPointSize(4.0);
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();    gluOrtho2D(-700 / 2, 700 / 2, -700 / 2, 700 / 2);
+}
+
+int cnt=0;
+int oldx,oldy;
+int newx,newy;
+void mouse(int button, int state, int x, int y)
+{
+  if (state == GLUT_DOWN)
+  {
+    if (button == GLUT_LEFT_BUTTON)
+    {
+      int viewport[4];
+      glGetIntegerv(GL_VIEWPORT, viewport);
+      int winWidth = viewport[2];
+      int winHeight = viewport[3];
+
+      int xi = x- winWidth / 2;
+      int yi = winHeight/2-y;
+
+      cout << xi << "\t" << yi << "\n";
+
+      cnt = (cnt + 1) % 2;
+
+      if (cnt == 1)
+      {
+        oldx = xi;
+        oldy = yi;
+        cout << "a" << endl;
+      }
+      if (cnt == 0)
+      {
+        newx = xi;
+        newy = yi;
+        cout << "b" << endl;
+      }
+
+      glPointSize(5.0f);
+      glColor3f(1.0, 0.0, 0.0);
+      glBegin(GL_POINTS);
+      glVertex2i(xi, yi);
+
+      glEnd();
+      glFlush();
+    }
+  }
+}
+
+void menu(int a){
+    cout<<"whatever\n";
+    dda(oldx,oldy,newx,newy,a);
 }
 
 int main(int argc, char** argv) {
-    cout << "Enter coordinates of initial point: ";
-    cin >> a >> b;
-    cout << "Enter coordinates of final point: ";
-    cin >> c >> d;
 
-    cout << "Enter type of line:\n";
-    cout << "1. Simple Line\n";
-    cout << "2. Dotted Line\n";
-    cout << "3. Dashed Line\n";
-    cout << "4. Solid Line\n";
-    cin >> type;
+    a=200,b=-200,c=-200,d=200;
+    type=1;
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
@@ -73,6 +131,13 @@ int main(int argc, char** argv) {
     glutCreateWindow("Line Drawing");
     init();
     glutDisplayFunc(display);
+    glutMouseFunc(mouse);
+    glutCreateMenu(menu);
+    glutAddMenuEntry("DDA_SIMPLE", 1);
+    glutAddMenuEntry("DDA_DOTTED", 2);
+    glutAddMenuEntry("DDA_DASHED", 3);
+    glutAddMenuEntry("DDA_SOLID", 4);
+    glutAttachMenu(GLUT_RIGHT_BUTTON);
     glutMainLoop();
 
     return 0;
