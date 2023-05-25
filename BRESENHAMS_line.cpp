@@ -9,8 +9,8 @@ using namespace std;
 int a, b, c, d, type;
 
 void BresenhamLine(int x1, int y1, int x2, int y2, int type) {
-    int dx = abs(x2 - x1);
-    int dy = abs(y2 - y1);
+    int dx = x2 - x1;
+    int dy = y2 - y1;
 
     float decision= 2*dy-dx;
 
@@ -24,7 +24,7 @@ void BresenhamLine(int x1, int y1, int x2, int y2, int type) {
 
     float x = x1, y = y1;
     int j = 0;
-    for (int i = 0; i < dx; i++) {
+    for (int i = 0; i < abs(dx); i++) {
 
          if(decision<0){
             x++;
@@ -84,3 +84,12 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+/*
+    Negative slope is not supported in the given code. However,
+    you can refer to the "BRESENHAM_LINE_WITH_MOUSE_INTERFACE.cpp"
+    file available in this repository to obtain a line with a negative slope.
+    You can simply copy and paste the algorithm from there.
+
+    although this algo. is also popular. short and simple
+    but just in case
+  */
