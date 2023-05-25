@@ -146,8 +146,8 @@ int main(int argc, char** argv) {
 }
 /*
 How to run?
-1.make click on first position
-2.make click on second position
-3.now hold mouse ring and leave it on choice
+1.make left click on first position
+2.make left click on second position
+3.now hold right button and leave it on choice
 4.hold left click to see line
 */
