@@ -57,7 +57,7 @@ int main(int argc,char **argv){
     glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
     glutInitWindowSize(700,700);
     glutInitWindowPosition(50,50);
-    glutCreateWindow("whatever the fk exist\n");
+    glutCreateWindow("BRESENHAMS_CIRCLE");
     init();
     glutDisplayFunc(display);
     glutMainLoop();
