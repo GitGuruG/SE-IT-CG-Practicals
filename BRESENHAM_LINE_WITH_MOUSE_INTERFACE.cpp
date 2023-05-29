@@ -8,15 +8,6 @@ using namespace std;
 
 int a, b, c, d, type;
 
-void drawpixel(int x,int y,int type){
-    glColor3f(one,one,one);
-    glBegin(GL_POINTS);
-
-    glVertex2i(x,y);
-
-    glEnd();
-}
-
 void BresenhamLine(int x1, int y1, int x2, int y2, int type) {
 
     int dx, dy, i, e;
