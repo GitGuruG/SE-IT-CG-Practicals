@@ -3,6 +3,7 @@
 #define zero 0.0
 
 void plot_point(int x, int y) {
+    glColor3f(one,zero,zero);
     glBegin(GL_POINTS);
     glVertex2i((int)x, (int)y);
     glEnd();
@@ -39,9 +40,20 @@ void bresenhamcircle(int x0, int y0, int radius) {
 void display(){
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(one,one,one);
-    for(int i=0;i<300;i++){
+
+    //to make quadrants
+    //horizontal line
+    glBegin(GL_LINES);
+    glVertex2i(-350,0);
+    glVertex2i(350,0);
+    //vertical line
+    glVertex2i(0,-350);
+    glVertex2i(0,350);
+    glEnd();
+
+    for(int i=0;i<100;i++){
         if(i%25==0){
-            bresenhamcircle(300,300,i);
+            bresenhamcircle(0,0,i);
         }
     }
     glFlush();
@@ -49,7 +61,7 @@ void display(){
 
 void init(){
     glClearColor(zero,zero,zero,zero);
-    gluOrtho2D(0,700,0,700);
+    gluOrtho2D(-350,350,-350,350);
 }
 
 int main(int argc,char **argv){
