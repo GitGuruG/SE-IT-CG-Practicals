@@ -56,10 +56,6 @@ void display() {
 void init() {
  glClearColor(0.6, 0.6, 0.6, 0.0);
   glClear(GL_COLOR_BUFFER_BIT);
-  // glColor3f(1.0f,0.0f,0.0f);
-  // glPointSize(4.0);
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
   gluOrtho2D(-700 / 2, 700 / 2, -700 / 2, 700 / 2);
 }
 
@@ -109,10 +105,6 @@ void menu(int a){
 }
 
 int main(int argc, char** argv) {
-
-    a=200,b=-200,c=-200,d=200;
-    type=1;
-
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(700, 700);
@@ -126,7 +118,6 @@ int main(int argc, char** argv) {
     glutAddMenuEntry("DDA_DOTTED", 2);
     glutAddMenuEntry("DDA_DASHED", 3);
     glutAddMenuEntry("DDA_SOLID", 4);
-    //glutAddMenuEntry("EXIT", 9);
     glutAttachMenu(GLUT_RIGHT_BUTTON);
     glutMainLoop();
 
