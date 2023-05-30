@@ -9,35 +9,28 @@ using namespace std;
 int a, b, c, d, type;
 
 void dda(int x1, int y1, int x2, int y2, int type) {
-    cout<<"IN"<<endl;
     float step,x,y,k,Xin,Yin;
     int dx=x2-x1;
     int dy=y2-y1;
 
-if(abs(dx)> abs(dy))
-{
-step = abs(dx);
-}
-else
-step = abs(dy);
+    step=abs(dx)> abs(dy)?abs(dx):abs(dy);
 
-Xin = dx/step;
-Yin = dy/step;
+    Xin = dx/step;
+    Yin = dy/step;
 
-x= x1;
-y=y1;
-glPointSize(1.0f);
-if(type==4){
-    glPointSize(10.0f);
-}
-glBegin(GL_POINTS);
-glVertex2i(x,y);
-int j=0;
-for (k=1 ;k<=step;k++)
-{
-x= x + Xin;
-y= y + Yin;
-
+    x= x1;
+    y=y1;
+    glPointSize(1.0f);
+    if(type==4){
+        glPointSize(10.0f);
+    }
+    glBegin(GL_POINTS);
+    glVertex2i(x,y);
+    int j=0;
+    for (k=1 ;k<=step;k++)
+    {
+    x= x + Xin;
+    y= y + Yin;
         if (type == 4 || type == 1) {
             glVertex2i((int)x, (int)y);
         }
@@ -48,8 +41,8 @@ y= y + Yin;
             glVertex2i((int)x, (int)y);
         }
         j = (j + 1) % 10;
-}
-glEnd();
+    }
+    glEnd();
 }
 
 void display() {
@@ -79,13 +72,8 @@ void mouse(int button, int state, int x, int y)
   {
     if (button == GLUT_LEFT_BUTTON)
     {
-      int viewport[4];
-      glGetIntegerv(GL_VIEWPORT, viewport);
-      int winWidth = viewport[2];
-      int winHeight = viewport[3];
-
-      int xi = x- winWidth / 2;
-      int yi = winHeight/2-y;
+      int xi = x- 350;
+      int yi = 350-y;
 
       cout << xi << "\t" << yi << "\n";
 
