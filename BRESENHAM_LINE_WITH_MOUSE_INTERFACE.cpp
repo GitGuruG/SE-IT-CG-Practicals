@@ -102,13 +102,8 @@ int oldx,oldy,newx,newy,cnt=0;
 void mouse(int button,int status,int x,int y){
 
     if(status==GLUT_DOWN && button==GLUT_LEFT_BUTTON){
-        int viewport[4];
-      glGetIntegerv(GL_VIEWPORT, viewport);
-      int winWidth = viewport[2];
-      int winHeight = viewport[3];
-
-      int xi = x- winWidth / 2;
-      int yi = winHeight/2-y;
+      int xi = x- 350;
+      int yi = 350 -y;
 
       cout << xi << "\t" << yi << "\n";
 
